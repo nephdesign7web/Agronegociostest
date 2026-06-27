@@ -13,7 +13,7 @@ export const Route = createFileRoute("/marcas")({
       {
         name: "description",
         content:
-          "Natura 506, BioBike y Bio+: marcas desarrolladas por Agronegocios CR con identidad propia para distintos mercados.",
+          "Natura 506, BioBike, Natura 506 Pets y Natura 506 Guatemala: marcas desarrolladas por Agronegocios CR con identidad propia para distintos mercados.",
       },
       { property: "og:title", content: "Marcas — Agronegocios CR" },
       {
@@ -79,7 +79,7 @@ function Page() {
                 ))}
               </ul>
               <a
-                href={WHATSAPP_URL}
+                href={b.url ?? WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"

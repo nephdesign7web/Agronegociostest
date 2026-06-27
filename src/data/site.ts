@@ -61,7 +61,7 @@ export const PROJECTS: ProjectCard[] = [
   },
 ];
 
-export type BrandSlug = "natura-506" | "biobike" | "bio-plus";
+export type BrandSlug = "natura-506" | "biobike" | "natura-506-pets" | "natura-506-guatemala";
 
 export const BRANDS: {
   slug: BrandSlug;
@@ -70,6 +70,7 @@ export const BRANDS: {
   description: string;
   benefits: string[];
   cta: string;
+  url?: string;
 }[] = [
   {
     slug: "natura-506",
@@ -84,6 +85,7 @@ export const BRANDS: {
       "Innovación continua",
     ],
     cta: "Explorar Natura 506",
+    url: "https://natura506.com",
   },
   {
     slug: "biobike",
@@ -100,18 +102,33 @@ export const BRANDS: {
     cta: "Conocer BioBike",
   },
   {
-    slug: "bio-plus",
-    name: "Bio+",
-    tagline: "Innovación para mejorar la calidad de vida.",
+    slug: "natura-506-pets",
+    name: "Natura 506 Pets",
+    tagline: "Bienestar natural para tus mascotas.",
     description:
-      "Bio+ desarrolla soluciones enfocadas en el bienestar, la sostenibilidad y la creación de nuevas oportunidades mediante productos y proyectos con visión de futuro.",
+      "Natura 506 Pets desarrolla productos naturales pensados para el cuidado y bienestar de las mascotas, aprovechando ingredientes seleccionados y el potencial de la biodiversidad costarricense.",
     benefits: [
-      "Soluciones innovadoras",
-      "Desarrollo sostenible",
-      "Investigación aplicada",
-      "Nuevas oportunidades",
+      "Productos naturales",
+      "Bienestar animal",
+      "Ingredientes seleccionados",
+      "Innovación continua",
     ],
-    cta: "Descubrir Bio+",
+    cta: "Explorar Natura 506 Pets",
+    url: "https://natura506pets.com",
+  },
+  {
+    slug: "natura-506-guatemala",
+    name: "Natura 506 Guatemala",
+    tagline: "Bienestar natural con raíces centroamericanas.",
+    description:
+      "Natura 506 Guatemala lleva la filosofía de bienestar natural a nuevos mercados, combinando ingredientes seleccionados de la región con el estándar de calidad que distingue a la marca.",
+    benefits: [
+      "Expansión regional",
+      "Productos naturales",
+      "Calidad certificada",
+      "Mercado centroamericano",
+    ],
+    cta: "Conocer Natura 506 Guatemala",
   },
 ];
 
