@@ -14,6 +14,7 @@ import {
   Bike,
   FlaskConical,
   Flower2,
+  PawPrint,
   Sprout,
   Target,
   Telescope,
@@ -454,14 +455,16 @@ function Index() {
           title="Nuestras *marcas*."
           align="center"
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2">
           {BRANDS.map((b, i) => {
             const BrandIcon =
               b.slug === "natura-506"
                 ? Flower2
                 : b.slug === "biobike"
                   ? Bike
-                  : FlaskConical;
+                  : b.slug === "natura-506-pets"
+                    ? PawPrint
+                    : FlaskConical;
             return (
             <Reveal key={b.slug} delay={i * 80}>
               <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 bg-card p-8 shadow-card-soft transition-all hover:-translate-y-1 hover:shadow-elevated">
