@@ -62,7 +62,7 @@ export const Route = createFileRoute("/")({
 const STATS = [
   { value: "+20 años", label: "Impulsando la agroinnovación" },
   { value: "5+ proyectos", label: "Estratégicos desarrollados" },
-  { value: "3 marcas", label: "Propias con visión de crecimiento" },
+  { value: "4 marcas", label: "Propias con visión de crecimiento" },
   { value: "100%", label: "Compromiso con la sostenibilidad" },
 ];
 
