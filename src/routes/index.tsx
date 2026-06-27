@@ -136,7 +136,7 @@ function GalleryLightbox({ images }: { images: string[] }) {
 
   return (
     <>
-      <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+      <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
         {images.map((src, i) => (
           <button
             key={i}
@@ -220,7 +220,7 @@ function Index() {
           </div>
         </div>
 
-        <div className="container-page relative py-24 text-primary-foreground md:py-32">
+        <div className="container-page relative py-16 text-primary-foreground md:py-32">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-primary-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-accent-soft backdrop-blur">
@@ -240,7 +240,7 @@ function Index() {
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="mt-6 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
+              <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-7xl">
                 Agroinnovación
                 <span className="block text-accent">costarricense</span>
                 <span className="block">con valor agregado.</span>
@@ -332,7 +332,7 @@ function Index() {
               </span>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="mt-5 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+              <h2 className="mt-5 font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
                 ¡Somos <span className="text-accent">AgroNegocios</span>!
               </h2>
             </Reveal>
@@ -388,7 +388,7 @@ function Index() {
               <Link
                 to="/proyectos/$slug"
                 params={{ slug: PROJECTS[0].slug }}
-                className="group relative flex h-full min-h-[28rem] flex-col justify-end overflow-hidden rounded-3xl bg-card shadow-card-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
+                className="group relative flex h-full min-h-[20rem] flex-col justify-end overflow-hidden rounded-3xl sm:min-h-[28rem] bg-card shadow-card-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
               >
                 <img
                   src={PROJECTS[0].image}
@@ -527,7 +527,7 @@ function Index() {
               />
               <Reveal delay={100}>
                 <div className="mt-10 flex items-baseline gap-4">
-                  <span className="font-display text-6xl font-semibold leading-none text-accent">
+                  <span className="font-display text-5xl font-semibold leading-none text-accent sm:text-6xl">
                     20<span className="text-accent/60">+</span>
                   </span>
                   <span className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">

@@ -8,9 +8,9 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer className="mt-16 bg-primary text-primary-foreground">
-      <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-5">
+      <div className="container-page grid gap-8 py-12 md:gap-12 md:grid-cols-2 md:py-16 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <Logo tone="light" />
+          <Logo className="brightness-0 invert" />
           <p className="mt-5 max-w-sm text-sm text-primary-foreground/75">
             Impulsamos proyectos agrícolas innovadores, sostenibles y con valor agregado,
             transformando recursos en oportunidades reales para Costa Rica y Latinoamérica.
