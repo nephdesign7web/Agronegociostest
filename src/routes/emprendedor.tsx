@@ -65,7 +65,7 @@ function Page() {
     <>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0" aria-hidden>
-          <img src={heroImg} alt="" className="h-full w-full object-cover" />
+          <img src={heroImg} alt="" className="h-full w-full object-cover object-right" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/30" />
         </div>
         <div className="container-page relative py-24 text-primary-foreground md:py-32">
