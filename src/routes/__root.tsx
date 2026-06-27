@@ -87,8 +87,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Más de 20 años desarrollando proyectos agrícolas sostenibles, productos con valor agregado y marcas innovadoras en Costa Rica.",
       },
-      { name: "author", content: "Walter Wonder" },
-      { name: "creator", content: "Walter Wonder" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

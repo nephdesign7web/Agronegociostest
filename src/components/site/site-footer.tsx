@@ -98,7 +98,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-primary-foreground/70 sm:flex-row">
-          <p>© {year} Agronegocios CR. Web creada por Walter Wonder.</p>
+          <p>© {year} Agronegocios CR.</p>
           <div className="flex items-center gap-5">
             <a href="#" className="hover:text-primary-foreground">Política de privacidad</a>
             <a href="#" className="hover:text-primary-foreground">Términos y condiciones</a>
