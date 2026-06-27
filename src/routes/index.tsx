@@ -1,5 +1,6 @@
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, useEffect, useCallback } from "react";
 import {
   ArrowRight,
   Briefcase,
@@ -18,12 +19,22 @@ import {
   Telescope,
   TestTube2,
   TrendingUp,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
 } from "lucide-react";
 import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { ContactForm } from "@/components/site/contact-form";
 import { PROJECTS, BRANDS, WHATSAPP_URL, CONTACT } from "@/data/site";
 import heroImg from "@/assets/hero-home.jpg";
+import galeria1 from "@/assets/galeria-1.jpg";
+import galeria2 from "@/assets/galeria-2.jpg";
+import galeria3 from "@/assets/galeria-3.jpg";
+import galeria4 from "@/assets/galeria-4.jpg";
+import galeria5 from "@/assets/galeria-5.jpg";
+import galeria6 from "@/assets/galeria-6.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,6 +101,100 @@ const TIMELINE = [
 ];
 
 const VALUES = ["Innovación", "Compromiso", "Sostenibilidad", "Colaboración", "Integridad"];
+
+const GALLERY = [galeria1, galeria2, galeria3, galeria4, galeria5, galeria6];
+
+const SOMOS_FEATURES = [
+  "Industrialización y valor agregado",
+  "Tecnología para procesos especializados",
+  "Cadena de pequeños productores",
+];
+
+function GalleryLightbox({ images }: { images: string[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+
+  const close = useCallback(() => setOpen(null), []);
+  const prev = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + images.length) % images.length)), [images.length]);
+  const next = useCallback(() => setOpen((i) => (i === null ? null : (i + 1) % images.length)), [images.length]);
+
+  useEffect(() => {
+    if (open === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [open, close, prev, next]);
+
+  useEffect(() => {
+    document.body.style.overflow = open !== null ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  return (
+    <>
+      <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+        {images.map((src, i) => (
+          <button
+            key={i}
+            onClick={() => setOpen(i)}
+            className="group relative overflow-hidden rounded-2xl aspect-[4/3] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            aria-label={`Ver foto ${i + 1}`}
+          >
+            <img
+              src={src}
+              alt={`Instalaciones ${i + 1}`}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-primary/0 transition-all duration-300 group-hover:bg-primary/40">
+              <ZoomIn className="h-7 w-7 text-primary-foreground opacity-0 drop-shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:scale-110" />
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {open !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={close}
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); close(); }}
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20"
+            aria-label="Cerrar"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            className="absolute left-3 z-10 rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+            aria-label="Anterior"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <img
+            src={images[open]}
+            alt={`Foto ${open + 1}`}
+            className="max-h-[85vh] max-w-[90vw] rounded-2xl object-contain shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            className="absolute right-3 z-10 rounded-full bg-white/10 p-3 text-white transition hover:bg-white/20"
+            aria-label="Siguiente"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+            {open + 1} / {images.length}
+          </span>
+        </div>
+      )}
+    </>
+  );
+}
 
 function Index() {
   return (
@@ -210,6 +315,46 @@ function Index() {
             >
               Conoce más sobre nosotros <ArrowRight className="h-4 w-4" />
             </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SOMOS */}
+      <section className="relative overflow-hidden bg-primary py-20 md:py-28">
+        <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-primary-foreground/5 blur-3xl" />
+        <div className="container-page relative text-primary-foreground">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur">
+                <Leaf className="h-3.5 w-3.5" /> Conócenos
+              </span>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="mt-5 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+                ¡Somos <span className="text-accent">AgroNegocios</span>!
+              </h2>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-primary-foreground/80 sm:text-lg">
+                Agronegocios Costa Rica es una organización agrocomercial enfocada en el desarrollo de proyectos productivos del agro, con su posterior industrialización y generación de valor agregado.
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-primary-foreground/70">
+                Nuestro trabajo conecta investigación, pequeños productores, tecnología de proceso y desarrollo comercial para crear productos con proyección nacional e internacional.
+              </p>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
+                {SOMOS_FEATURES.map((f) => (
+                  <span key={f} className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-2 text-sm font-medium backdrop-blur">
+                    <CheckCircle2 className="h-4 w-4 text-accent" /> {f}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={260}>
+            <GalleryLightbox images={GALLERY} />
           </Reveal>
         </div>
       </section>
