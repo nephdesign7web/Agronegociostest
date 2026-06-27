@@ -47,7 +47,7 @@ export function SiteHeader() {
           : "border-transparent bg-background/40 backdrop-blur",
       )}
     >
-      <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:h-20">
+      <div className="container-page grid h-20 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:h-24">
         <Logo />
 
         <nav className="hidden items-center gap-1 lg:flex">
