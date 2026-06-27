@@ -2,7 +2,7 @@
 
 Código fuente completo de la web de Agronegocios CR.
 
-Autor y creador de la web: Walter Wonder.
+Desarrollado por Nephdesign — nephdesign7@gmail.com
 
 ## Qué incluye este respaldo
 
