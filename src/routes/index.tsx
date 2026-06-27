@@ -36,6 +36,11 @@ import galeria3 from "@/assets/galeria-3.jpg";
 import galeria4 from "@/assets/galeria-4.jpg";
 import galeria5 from "@/assets/galeria-5.jpg";
 import galeria6 from "@/assets/galeria-6.jpg";
+import logoCinde from "@/assets/logo-white-cinde.png";
+import logoComercio from "@/assets/logo-white-comercio-exterior.png";
+import logoIct from "@/assets/logo-white-ict.png";
+import logoProcomer from "@/assets/logo-white-procomer.png";
+import logoRelaciones from "@/assets/logo-white-relaciones-exteriores-1.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,6 +109,14 @@ const TIMELINE = [
 const VALUES = ["Innovación", "Compromiso", "Sostenibilidad", "Colaboración", "Integridad"];
 
 const GALLERY = [galeria1, galeria2, galeria3, galeria4, galeria5, galeria6];
+
+const INSTITUCIONES = [
+  { src: logoCinde,      alt: "CINDE" },
+  { src: logoComercio,   alt: "Ministerio de Comercio Exterior" },
+  { src: logoIct,        alt: "ICT" },
+  { src: logoProcomer,   alt: "PROCOMER" },
+  { src: logoRelaciones, alt: "Ministerio de Relaciones Exteriores" },
+];
 
 const SOMOS_FEATURES = [
   "Industrialización y valor agregado",
@@ -356,6 +369,24 @@ function Index() {
           </div>
           <Reveal delay={260}>
             <GalleryLightbox images={GALLERY} />
+          </Reveal>
+
+          <Reveal delay={320}>
+            <div className="mt-14 border-t border-primary-foreground/15 pt-12">
+              <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground/50">
+                Respaldados e impulsados por
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+                {INSTITUCIONES.map((inst) => (
+                  <img
+                    key={inst.alt}
+                    src={inst.src}
+                    alt={inst.alt}
+                    className="h-8 w-auto object-contain opacity-60 transition-opacity duration-300 hover:opacity-100 sm:h-10"
+                  />
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
