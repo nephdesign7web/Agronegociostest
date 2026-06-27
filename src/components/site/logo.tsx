@@ -5,7 +5,7 @@ import logoImg from "@/assets/logo.png";
 export function Logo({ className }: { className?: string }) {
   return (
     <Link to="/" className={cn("flex items-center", className)}>
-      <img src={logoImg} alt="Agronegocios CR" className="h-20 w-auto object-contain" />
+      <img src={logoImg} alt="Agronegocios CR" className="h-28 w-auto object-contain" />
     </Link>
   );
 }
