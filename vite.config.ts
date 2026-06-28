@@ -3,17 +3,19 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-    tanstackStart({
-      server: { entry: "server" },
-      nitro: {
-        preset: "vercel",
-      },
-    }),
-    react(),
-  ],
+  plugins: [tailwindcss(), tanstackStart({
+    server: { entry: "server" },
+    nitro: {
+      preset: "vercel",
+    },
+  }), react(), cloudflare({
+    viteEnvironment: {
+      name: "ssr"
+    }
+  })],
   resolve: {
     tsconfigPaths: true,
     dedupe: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-start"],
