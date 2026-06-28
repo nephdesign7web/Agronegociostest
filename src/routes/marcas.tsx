@@ -68,11 +68,11 @@ function Page() {
                 <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary-foreground/10 blur-3xl" aria-hidden />
                 <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-primary-foreground/5 blur-2xl" aria-hidden />
                 {/* Logo en contenedor blanco */}
-                <div className="relative flex items-center justify-center rounded-2xl bg-white px-12 py-8 shadow-[0_8px_40px_rgba(0,0,0,0.22)]">
+                <div className="relative flex items-center justify-center rounded-2xl bg-white px-14 py-10 shadow-[0_8px_40px_rgba(0,0,0,0.22)]">
                   <img
                     src={BRAND_LOGOS[b.slug]}
                     alt={`Logo ${b.name}`}
-                    className="h-24 w-auto object-contain sm:h-28"
+                    className="h-48 w-auto object-contain sm:h-56"
                   />
                 </div>
                 {/* Solo tagline */}
