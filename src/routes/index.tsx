@@ -126,10 +126,22 @@ const SOMOS_FEATURES = [
 
 function GalleryLightbox({ images }: { images: string[] }) {
   const [open, setOpen] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const close = useCallback(() => setOpen(null), []);
   const prev = useCallback(() => setOpen((i) => (i === null ? null : (i - 1 + images.length) % images.length)), [images.length]);
   const next = useCallback(() => setOpen((i) => (i === null ? null : (i + 1) % images.length)), [images.length]);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  }, [next, prev]);
 
   useEffect(() => {
     if (open === null) return;
@@ -173,6 +185,8 @@ function GalleryLightbox({ images }: { images: string[] }) {
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={close}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={(e) => { e.stopPropagation(); close(); }}
