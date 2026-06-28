@@ -85,4 +85,29 @@ function Page() {
 
             <Reveal delay={100} className={cn("flex h-full flex-col justify-center", i % 2 === 1 && "lg:order-1")}>
               <SectionHeading eyebrow={`Marca propia · 0${i + 1}`} title={b.tagline} />
-              <p className="mt-5 text-base leading-relaxed text-mut
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{b.description}</p>
+              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                {b.benefits.map((bn) => (
+                  <li
+                    key={bn}
+                    className="flex items-center gap-2.5 rounded-xl bg-secondary px-4 py-2.5 text-sm font-medium text-primary"
+                  >
+                    <Check className="h-4 w-4" /> {bn}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={b.url ?? WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+              >
+                {b.cta} <ArrowRight className="h-4 w-4" />
+              </a>
+            </Reveal>
+          </article>
+        ))}
+      </section>
+    </>
+  );
+}
