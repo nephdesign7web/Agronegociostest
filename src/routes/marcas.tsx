@@ -5,6 +5,17 @@ import { Reveal } from "@/components/site/reveal";
 import { SectionHeading } from "@/components/site/section-heading";
 import { BRANDS, WHATSAPP_URL } from "@/data/site";
 import { cn } from "@/lib/utils";
+import natura506Logo from "@/assets/logo-natura-506.png";
+import biobikeLogo from "@/assets/logo-biobike.png";
+import natura506PetsLogo from "@/assets/logo-natura-506-pets.png";
+import natura506GuatemalaLogo from "@/assets/logo-natura-506-guatemala.png";
+
+const BRAND_LOGOS: Record<string, string> = {
+  "natura-506": natura506Logo,
+  "biobike": biobikeLogo,
+  "natura-506-pets": natura506PetsLogo,
+  "natura-506-guatemala": natura506GuatemalaLogo,
+};
 
 export const Route = createFileRoute("/marcas")({
   head: () => ({
@@ -53,43 +64,25 @@ function Page() {
             className="scroll-mt-28 grid items-stretch gap-10 lg:grid-cols-2"
           >
             <Reveal className={cn("h-full", i % 2 === 1 && "lg:order-2")}>
-              <div className="relative flex h-full min-h-[320px] flex-col justify-center overflow-hidden rounded-[2rem] gradient-hero p-10 text-primary-foreground shadow-elevated sm:p-14">
+              <div className="relative flex h-full min-h-[320px] flex-col items-center justify-center gap-8 overflow-hidden rounded-[2rem] gradient-hero p-10 text-primary-foreground shadow-elevated sm:p-14">
                 <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-primary-foreground/10 blur-3xl" aria-hidden />
-                <div className="relative">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-foreground/15">
-                    <Leaf className="h-5 w-5" />
-                  </span>
-                  <p className="mt-6 font-display text-5xl font-semibold tracking-tight">{b.name}</p>
-                  <p className="mt-3 text-primary-foreground/80">{b.tagline}</p>
+                <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-primary-foreground/5 blur-2xl" aria-hidden />
+                {/* Logo en contenedor blanco */}
+                <div className="relative flex items-center justify-center rounded-2xl bg-white px-10 py-6 shadow-[0_8px_40px_rgba(0,0,0,0.22)]">
+                  <img
+                    src={BRAND_LOGOS[b.slug]}
+                    alt={`Logo ${b.name}`}
+                    className="h-16 w-auto object-contain sm:h-20"
+                  />
+                </div>
+                {/* Nombre y tagline */}
+                <div className="relative text-center">
+                  <p className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{b.name}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-primary-foreground/75">{b.tagline}</p>
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={100} className={cn("flex h-full flex-col justify-center", i % 2 === 1 && "lg:order-1")}>
               <SectionHeading eyebrow={`Marca propia · 0${i + 1}`} title={b.tagline} />
-              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{b.description}</p>
-              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                {b.benefits.map((bn) => (
-                  <li
-                    key={bn}
-                    className="flex items-center gap-2.5 rounded-xl bg-secondary px-4 py-2.5 text-sm font-medium text-primary"
-                  >
-                    <Check className="h-4 w-4" /> {bn}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={b.url ?? WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
-              >
-                {b.cta} <ArrowRight className="h-4 w-4" />
-              </a>
-            </Reveal>
-          </article>
-        ))}
-      </section>
-    </>
-  );
-}
+              <p className="mt-5 text-base leading-relaxed text-mut
