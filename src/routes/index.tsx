@@ -1,6 +1,6 @@
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   ArrowRight,
   Briefcase,
@@ -210,6 +210,42 @@ function GalleryLightbox({ images }: { images: string[] }) {
   );
 }
 
+
+function useCountUp(target: number, duration = 1500) {
+  const [count, setCount] = useState(0);
+  const [triggered, setTriggered] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setTriggered(true); observer.disconnect(); } },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!triggered) return;
+    const start = performance.now();
+    const animate = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [triggered, target, duration]);
+  return { count, ref };
+}
+
+function StatCounter({ value }: { value: string }) {
+  const match = value.match(/^([+]?)(\d+)([+%]?)(.*)$/);
+  if (!match) return <>{value}</>;
+  const { count, ref } = useCountUp(parseInt(match[2], 10));
+  return <span ref={ref}>{match[1]}{count}{match[3]}{match[4]}</span>;
+}
+
 function Index() {
   return (
     <>
@@ -291,7 +327,7 @@ function Index() {
                 key={s.label}
                 className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/[0.06] p-5 text-center backdrop-blur-md"
               >
-                <p className="font-display text-2xl font-bold text-accent-soft sm:text-3xl">{s.value}</p>
+                <p className="font-display text-2xl font-bold text-accent-soft sm:text-3xl"><StatCounter value={s.value} /></p>
               </div>
             ))}
           </Reveal>
